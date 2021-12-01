@@ -2,9 +2,11 @@
     <div class="card">
         <h3>
             {{ info.title }}
+            {{ info.name }}
         </h3>
         <h4>
             {{ info.original_title }}
+            {{ info.original_name }}
         </h4>
         <img
             v-if="languagesImgs.includes(info.original_language)"

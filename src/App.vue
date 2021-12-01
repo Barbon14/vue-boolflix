@@ -1,7 +1,13 @@
 <template>
   <div id="app">
-    <AppHeader @moviesListReady="setMoviesList"/>
-    <AppMain :moviesList="moviesList"/>
+    <AppHeader 
+      @moviesListReady="setMoviesList"
+      @tvSeriesListReady="setTvSeriesList"
+    />
+    <AppMain 
+      :moviesList="moviesList" 
+      :tvSeriesList="tvSeriesList"
+    />
   </div>
 </template>
 
@@ -17,12 +23,16 @@ export default {
   },
   data() {
     return {
-      moviesList: []
+      moviesList: [],
+      tvSeriesList: []
     }
   },
   methods: {
     setMoviesList(array) {
       this.moviesList = array;
+    },
+    setTvSeriesList(array) {
+      this.tvSeriesList = array;
     }
   }
 }

@@ -3,9 +3,9 @@
         <input 
             type="text" 
             v-model="textSearch"
-            @keyup.enter="getMovies"
+            @keyup.enter="getData"
         >
-        <button @click.prevent="getMovies">
+        <button @click.prevent="getData">
             Cerca
         </button>
     </header>
@@ -23,19 +23,30 @@ export default {
             // dati api
             apiUrl: "https://api.themoviedb.org/3/",
             apiKey: 'api_key=327423a3fa358699db3662c3a02c5b5e',
-            apiMoviesSerch: 'search/movie?',
+            apiMoviesSearch: 'search/movie?',
+            apiTvSeriesSearch: 'search/tv?',
 
-            movies: []
+            movies: [],
+            tvSeries : []
 
         }
     },
     methods: {
-        getMovies() {
+        getData() {
             axios
-            .get(`${this.apiUrl}${this.apiMoviesSerch}${this.apiKey}&query=${this.textSearch}`)
-            .then((result) => {
-                this.movies = result.data.results;
+            .get(`${this.apiUrl}${this.apiMoviesSearch}${this.apiKey}&query=${this.textSearch}`)
+            .then((resMovie) => {
+                this.movies = resMovie.data.results;
                 this.$emit('moviesListReady', this.movies);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            axios
+            .get(`${this.apiUrl}${this.apiTvSeriesSearch}${this.apiKey}&query=${this.textSearch}`)
+            .then((resTv) => {
+                this.tvSeries = resTv.data.results;
+                this.$emit('tvSeriesListReady', this.tvSeries);
             })
             .catch((err) => {
                 console.log(err);
