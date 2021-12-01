@@ -6,9 +6,14 @@
         <h4>
             {{ info.original_title }}
         </h4>
-        <h5>
+        <img
+            v-if="languagesImgs.includes(info.original_language)"
+            :src="require(`../assets/img/${info.original_language}.png`)" 
+            :alt="info.original_language"
+        >
+        <div v-else>
             {{ info.original_language }}
-        </h5>
+        </div>
         <h5>
             {{ info.vote_average }}
         </h5>
@@ -20,6 +25,11 @@ export default {
     name : 'Card',
     props: {
         info: Object
+    },
+    data() {
+        return {
+            languagesImgs: ['it', 'en']
+        }
     }
 }
 </script>
