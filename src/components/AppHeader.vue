@@ -35,6 +35,7 @@ export default {
             .get(`${this.apiUrl}${this.apiMoviesSerch}${this.apiKey}&query=${this.textSearch}`)
             .then((result) => {
                 this.movies = result.data.results;
+                this.$emit('moviesListReady', this.movies);
             })
             .catch((err) => {
                 console.log(err);

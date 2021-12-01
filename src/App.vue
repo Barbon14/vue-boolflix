@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <AppHeader/>
-    <AppMain/>
+    <AppHeader @moviesListReady="setMoviesList"/>
+    <AppMain :moviesList="moviesList"/>
   </div>
 </template>
 
@@ -14,6 +14,16 @@ export default {
   components: {
     AppHeader,
     AppMain
+  },
+  data() {
+    return {
+      moviesList: []
+    }
+  },
+  methods: {
+    setMoviesList(array) {
+      this.moviesList = array;
+    }
   }
 }
 </script>
