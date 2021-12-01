@@ -1,9 +1,17 @@
 <template>
     <div class="card">
-        {{ info.title }}
-        {{ info.original_title }}
-        {{ info.original_language }}
-        {{ info.vote_average }}
+        <h3>
+            {{ info.title }}
+        </h3>
+        <h4>
+            {{ info.original_title }}
+        </h4>
+        <h5>
+            {{ info.original_language }}
+        </h5>
+        <h5>
+            {{ info.vote_average }}
+        </h5>
     </div>
 </template>
 
@@ -17,5 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.card {
+    margin: 30px;
+}
 </style>
