@@ -1,31 +1,33 @@
 <template>
     <div class="card">
-        <img 
+        <img class="poster"
             :src="`https://image.tmdb.org/t/p/w342${info.poster_path}`" 
             :alt="info.title ? info.title : info.name"
         >
-        <h3>
-            {{ info.title }}
-            {{ info.name }}
-        </h3>
-        <h4>
-            {{ info.original_title }}
-            {{ info.original_name }}
-        </h4>
-        <img
-            v-if="languagesImgs.includes(info.original_language)"
-            :src="require(`../assets/img/${info.original_language}.png`)" 
-            :alt="info.original_language"
-        >
-        <div v-else>
-            {{ info.original_language }}
+        <div class="card_info">
+            <h3>
+                {{ info.title }}
+                {{ info.name }}
+            </h3>
+            <h4>
+                {{ info.original_title }}
+                {{ info.original_name }}
+            </h4>
+            <img
+                class="language_flag"
+                v-if="languagesImgs.includes(info.original_language)"
+                :src="require(`../assets/img/${info.original_language}.png`)" 
+                :alt="info.original_language"
+            >
+            <div v-else>
+                {{ info.original_language }}
+            </div>
+            <div>
+                <span v-for="n in voteRounded" :key="n">
+                    <i class="fas fa-star"></i>
+                </span>
+            </div>
         </div>
-        <h5>
-            <span v-for="n in Math.ceil(info.vote_average / 2)" :key="n">
-                
-                <i class="fas fa-star"></i>
-            </span>
-        </h5>
     </div>
 </template>
 
@@ -38,6 +40,7 @@ export default {
     data() {
         return {
             languagesImgs: ['it', 'en'],
+            voteRounded: Math.ceil(this.info.vote_average / 2)
         }
     }
 }
@@ -45,6 +48,38 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-    margin: 30px;
+    margin: 10px;
+    color: white;
+    position: relative;
+    width: calc((100vw / 5) - 20px);
+    // height: 500px;
+    flex-shrink: 0;
+
+    img { 
+        width: 100%;
+        height: 100%
+    };
+
+    .card_info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 20px;
+        display: none;
+
+        .language_flag {
+            width: 50px;
+            height: 30px;
+        }
+    }
+
+    &:hover  {
+        .card_info{
+            display: block;
+        }
+        .poster {
+            opacity: 0.4;
+        }
+    }
 }
 </style>
