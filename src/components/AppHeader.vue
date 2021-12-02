@@ -1,14 +1,16 @@
 <template>
     <header>
         <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="">
-        <input 
-            type="text" 
-            v-model="textSearch"
-            @keyup.enter="getData"
-        >
-        <button @click.prevent="getData">
-            Cerca
-        </button>
+        <span>
+            <input 
+                type="text" 
+                v-model="textSearch"
+                @keyup.enter="getData"
+            >
+            <button @click.prevent="getData">
+                Cerca
+            </button>
+        </span>
     </header>
 </template>
 
@@ -62,9 +64,21 @@ header {
     height: 80px;
     background-color: black;
     padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     img {
         height: 100%;
+    }
+
+    input {
+        margin: 0 10px;
+        padding: 3px;
+    }
+
+    button {
+        padding: 3px;
     }
 }
 </style>
