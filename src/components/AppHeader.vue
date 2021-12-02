@@ -4,7 +4,7 @@
         <span>
             <input 
                 type="text" 
-                v-model="textSearch"
+                v-model.trim="textSearch"
                 @keyup.enter="getData"
             >
             <button @click.prevent="getData">
@@ -36,24 +36,26 @@ export default {
     },
     methods: {
         getData() {
-            axios
-            .get(`${this.apiUrl}${this.apiMoviesSearch}${this.apiKey}&query=${this.textSearch}`)
-            .then((resMovie) => {
-                this.movies = resMovie.data.results;
-                this.$emit('moviesListReady', this.movies);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-            axios
-            .get(`${this.apiUrl}${this.apiTvSeriesSearch}${this.apiKey}&query=${this.textSearch}`)
-            .then((resTv) => {
-                this.tvSeries = resTv.data.results;
-                this.$emit('tvSeriesListReady', this.tvSeries);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+            if (this.textSearch !== '') {
+                axios
+                .get(`${this.apiUrl}${this.apiMoviesSearch}${this.apiKey}&query=${this.textSearch}`)
+                .then((resMovie) => {
+                    this.movies = resMovie.data.results;
+                    this.$emit('moviesListReady', this.movies);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                axios
+                .get(`${this.apiUrl}${this.apiTvSeriesSearch}${this.apiKey}&query=${this.textSearch}`)
+                .then((resTv) => {
+                    this.tvSeries = resTv.data.results;
+                    this.$emit('tvSeriesListReady', this.tvSeries);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+            }
         }
     }
 }
