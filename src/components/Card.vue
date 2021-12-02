@@ -1,5 +1,9 @@
 <template>
     <div class="card">
+        <img 
+            :src="`https://image.tmdb.org/t/p/w342${info.poster_path}`" 
+            :alt="info.title ? info.title : info.name"
+        >
         <h3>
             {{ info.title }}
             {{ info.name }}
@@ -17,7 +21,10 @@
             {{ info.original_language }}
         </div>
         <h5>
-            {{ info.vote_average }}
+            <span v-for="n in Math.ceil(info.vote_average / 2)" :key="n">
+                
+                <i class="fas fa-star"></i>
+            </span>
         </h5>
     </div>
 </template>
@@ -30,7 +37,7 @@ export default {
     },
     data() {
         return {
-            languagesImgs: ['it', 'en']
+            languagesImgs: ['it', 'en'],
         }
     }
 }
