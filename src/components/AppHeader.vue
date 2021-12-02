@@ -1,5 +1,6 @@
 <template>
     <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="">
         <input 
             type="text" 
             v-model="textSearch"
@@ -57,5 +58,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+header {
+    height: 80px;
+    background-color: black;
+    padding: 20px;
 
+    img {
+        height: 100%;
+    }
+}
 </style>
