@@ -13,21 +13,29 @@
             </h3>
             <!-- original title -->
             <h4>
+                Titolo orginale:
+            </h4>
+            <div>
                 {{ info.original_title }}
                 {{ info.original_name }}
-            </h4>
+            </div>
             <!-- original language -->
-            <img
-                class="language_flag"
-                v-if="languagesImgs.includes(info.original_language)"
-                :src="require(`../assets/img/${info.original_language}.png`)" 
-                :alt="info.original_language"
-            >
-            <div v-else>
-                {{ info.original_language }}
+            <div class="orig_language">
+                <h4>
+                    Lingua originale:
+                </h4> 
+                <img
+                    v-if="languagesImgs.includes(info.original_language)"
+                    :src="require(`../assets/img/${info.original_language}.png`)" 
+                    :alt="info.original_language"
+                >
+                <div v-else>
+                    {{ info.original_language }}
+                </div>
             </div>
             <!-- vote icons -->
             <div>
+                Voto medio:
                 <span v-for="n in voteRounded" :key="n">
                     <i class="fas fa-star"></i>
                 </span>
@@ -56,8 +64,8 @@ export default {
     margin: 10px;
     color: white;
     position: relative;
-    width: calc((100vw / 5) - 20px);
-    // height: 500px;
+    width: 300px;
+    height: 450px;
     flex-shrink: 0;
 
     .poster { 
@@ -71,16 +79,34 @@ export default {
         left: 0;
         padding: 20px;
         display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        height: 100%;
 
-        .language_flag {
-            width: 50px;
-            height: 30px;
+        h3 {
+            margin: 10px 0;
+        }
+
+        .orig_language {
+            margin: 10px ;
+
+            img {
+                width: 50px;
+                height: 30px;
+                margin: 5px 0;
+            }
+        }
+
+        span { 
+            color: yellow;
         }
     }
 
     &:hover  {
         .card_info{
-            display: block;
+            display: flex;
         }
         .poster {
             opacity: 0.4;
