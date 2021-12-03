@@ -49,6 +49,9 @@ main {
     overflow-y: auto;
     color: white;
 
+    section {
+        padding: 20px;
+    }
     .container {
         padding: 20px 0;
         display: flex;
