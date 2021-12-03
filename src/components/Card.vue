@@ -1,18 +1,22 @@
 <template>
     <div class="card">
+        <!-- poster -->
         <img class="poster"
             :src="info.poster_path != null ? `https://image.tmdb.org/t/p/w342${info.poster_path}` : 'https://i.pinimg.com/236x/a4/3b/29/a43b2945c7a69102ef193ad7418c32a0.jpg'" 
             :alt="info.title ? info.title : info.name"
         >
         <div class="card_info">
+            <!-- title -->
             <h3>
                 {{ info.title }}
                 {{ info.name }}
             </h3>
+            <!-- original title -->
             <h4>
                 {{ info.original_title }}
                 {{ info.original_name }}
             </h4>
+            <!-- original language -->
             <img
                 class="language_flag"
                 v-if="languagesImgs.includes(info.original_language)"
@@ -22,6 +26,7 @@
             <div v-else>
                 {{ info.original_language }}
             </div>
+            <!-- vote icons -->
             <div>
                 <span v-for="n in voteRounded" :key="n">
                     <i class="fas fa-star"></i>
