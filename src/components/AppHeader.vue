@@ -26,8 +26,10 @@ export default {
             // dati api
             apiUrl: "https://api.themoviedb.org/3/",
             apiKey: 'api_key=327423a3fa358699db3662c3a02c5b5e',
+            apiLanguage: '&language=it-It',
             apiMoviesSearch: 'search/movie?',
             apiTvSeriesSearch: 'search/tv?',
+        
 
             movies: [],
             tvSeries : []
@@ -38,7 +40,7 @@ export default {
         getData() {
             if (this.textSearch !== '') {
                 axios
-                .get(`${this.apiUrl}${this.apiMoviesSearch}${this.apiKey}&query=${this.textSearch}`)
+                .get(`${this.apiUrl}${this.apiMoviesSearch}${this.apiKey}${this.apiLanguage}&query=${this.textSearch}`)
                 .then((resMovie) => {
                     this.movies = resMovie.data.results;
                     this.$emit('moviesListReady', this.movies);
@@ -47,7 +49,7 @@ export default {
                     console.log(err);
                 })
                 axios
-                .get(`${this.apiUrl}${this.apiTvSeriesSearch}${this.apiKey}&query=${this.textSearch}`)
+                .get(`${this.apiUrl}${this.apiTvSeriesSearch}${this.apiKey}${this.apiLanguage}&query=${this.textSearch}`)
                 .then((resTv) => {
                     this.tvSeries = resTv.data.results;
                     this.$emit('tvSeriesListReady', this.tvSeries);
