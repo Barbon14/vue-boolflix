@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <img class="poster"
-            :src="`https://image.tmdb.org/t/p/w342${info.poster_path}`" 
+            :src="info.poster_path != null ? `https://image.tmdb.org/t/p/w342${info.poster_path}` : 'https://i.pinimg.com/236x/a4/3b/29/a43b2945c7a69102ef193ad7418c32a0.jpg'" 
             :alt="info.title ? info.title : info.name"
         >
         <div class="card_info">
@@ -55,7 +55,7 @@ export default {
     // height: 500px;
     flex-shrink: 0;
 
-    img { 
+    .poster { 
         width: 100%;
         height: 100%
     };
