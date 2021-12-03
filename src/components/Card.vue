@@ -34,12 +34,21 @@
                 </div>
             </div>
             <!-- vote icons -->
-            <div>
+            <h4>
                 Voto medio:
+            </h4> 
+            <div v-if="voteRounded != 0">
                 <span v-for="n in voteRounded" :key="n">
                     <i class="fas fa-star"></i>
                 </span>
             </div>
+            <div v-else>
+                Ancora nessun voto 
+            </div>
+            <!-- overview -->
+            <p class="overview" v-if="info.overview != ''">
+                <strong>Trama: </strong> {{ info.overview }}
+            </p>
         </div>
     </div>
 </template>
@@ -74,19 +83,22 @@ export default {
     };
 
     .card_info {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        text-align: center;
+        // position
         position: absolute;
         top: 0;
         left: 0;
-        padding: 20px;
+        // display
         display: none;
         flex-direction: column;
         align-items: center;
-        text-align: center;
         justify-content: center;
-        height: 100%;
 
         h3 {
-            margin: 10px 0;
+            margin: 15px 0;
         }
 
         .orig_language {
@@ -101,6 +113,14 @@ export default {
 
         span { 
             color: yellow;
+        }
+
+        .overview {
+            margin: 10px 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
         }
     }
 
